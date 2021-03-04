@@ -1,0 +1,17 @@
+- name: Add kubernetes repo
+  yum_repository:
+    name: kubernetes
+    description: kubernetes YUM repo
+    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-{{ ansible_architecture }}
+    gpgcheck: yes
+    gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+  when: ansible_distribution in ["CentOS","RedHat","OracleLinux"]
+
+- name: Install kubernets binaries
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - kubeadm-1.20.4-0
+      - kubelet-1.20.4-0
+      - kubectl-1.20.4-0
