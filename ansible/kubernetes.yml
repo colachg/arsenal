@@ -1,5 +1,0 @@
----
-- hosts: nodes
-  roles:
-    - { role: container-engine/docker-ce }
-    - { role: kubernetes-binary }
