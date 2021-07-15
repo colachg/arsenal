@@ -1,0 +1,20 @@
+- name: install list of packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - fail2ban
+    - ufw
+
+- name: Run the equivalent of "apt-get update" as a separate step
+  apt:
+    update_cache: yes
+
+- name: Update all packages to their latest version
+  apt:
+    name: "*"
+    state: latest
+
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: yes
